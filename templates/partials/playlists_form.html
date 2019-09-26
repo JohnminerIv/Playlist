@@ -11,6 +11,7 @@
     <p>
         <label for='playlist-videos'>Videos</label><br>
        Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.
-       <textarea id='playlist-videos' name='videos' rows='10'>{{ "\n".join(playlist.videos) }}</textarea>
+       <br>
+       <textarea id='playlist-videos' name='videos' rows='10'>{{ video_links }}</textarea>
     </p>
 </fieldset>

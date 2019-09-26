@@ -49,7 +49,7 @@ def playlists_show(playlist_id):
     return render_template("playlists_show.html", playlist=playlist)
 
 
-@app.route('/playlist/<playlist_id', methods=['POST'])
+@app.route('/playlist/<playlist_id>', methods=['POST'])
 def playlists_update(playlist_id):
     updated_playlist = {
         'title': request.form.get('title'),
@@ -63,11 +63,17 @@ def playlists_update(playlist_id):
     return redirect(url_for('playlists_show', playlist_id=playlist_id))
 
 
-@app.route('/playlists/<playlist_id>/edit')
+@app.route('/playlist/<playlist_id>/edit')
 def playlists_edit(playlist_id):
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
     video_links = '/n'.join(playlist.get('videos'))
-    return render_template("playlists_edit.html", playlist=playlist, title="Edit Playlist")
+    return render_template("playlists_edit.html", playlist=playlist, title="Edit Playlist", video_links=video_links)
+
+
+@app.route('/playlist/<playlist_id>/delete', methods=['POST'])
+def playlists_delete(playlist_id):
+    playlists.delete_one({"_id": ObjectId(playlist_id)})
+    return redirect(url_for('playlists_index'))
 
 
 if __name__ == '__main__':
