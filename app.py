@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 
 client = MongoClient()
@@ -23,6 +23,22 @@ def index():
 def playlists_index():
     """Return playlists."""
     return render_template("playlists_index.html", playlists=playlists.find())
+
+
+@app.route('/playlists/new')
+def playlists_new():
+    return render_template("playlists_new.html")
+
+
+@app.route('/playlists', methods=['POST'])
+def playlists_submit():
+    print(request.form.to_dict())
+    playlist = {
+        "title": request.form.get('title'),
+        'description': request.form.get('description')
+    }
+    playlists.insert_one(playlist)
+    return redirect(url_for('playlists_index'))
 
 
 if __name__ == '__main__':

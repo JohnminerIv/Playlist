@@ -2,6 +2,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>playlists</h1>
+    <a href='/playlists/new'>New Playlist</a>
     {% for playlist in playlists%}
         <h2>{{playlist.title}}</h2>
         <small>{{playlist.description}}</small>
