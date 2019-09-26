@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<form action="/playlist/{{playlist._id}}" method="POST">
+<form action="/playlists/{{playlist._id}}" method="POST">
     {% include 'partials/playlists_form.html' %}
     <p>
         <button type="submit">Save Playlist</button>
