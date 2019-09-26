@@ -1,0 +1,16 @@
+<fieldset>
+    <legend>{{title}}</legend>
+    <p>
+        <label for="playlist-title">Title</label><br>
+        <input id="play-title" type="text" name="title" value="{{playlist.title}}"/>
+    </p>
+    <p>
+        <label for="description">Description</label><br>
+        <input id="description" type="text" name="description" value="{{playlist.description}}"/>
+    </p>
+    <p>
+        <label for='playlist-videos'>Videos</label><br>
+       Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.
+       <textarea id='playlist-videos' name='videos' rows='10'>{{ "\n".join(playlist.videos) }}</textarea>
+    </p>
+</fieldset>

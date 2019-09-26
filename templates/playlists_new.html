@@ -1,26 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <form action="/playlists" method="POST">
-        <fieldset>
-            <legend>New Playlist</legend>
-            <p>
-                <label for="title">Title</label>
-                <br>
-                <input type="text" name="title"/>
-            </p>
-            <p>
-                <label for="description">Description</label>
-                <br>
-                <input type="text" name="description" />
-            </p>
-            <p>
-                <label for="playlist_videos">Videos</label>
-                <br>
-                Add videos in the form of 'https://youtube.com/embeded/key'. Seperate wil a new line.
-                <br>
-                <textarea id="playlist_videos" rows="10" name="videos"></textarea>
-            </p>
-        </fieldset>
+        {% include 'partials/playlists_form.html' %}
         <p>
             <button type="submit">Save Playlist</button>
         </p>
