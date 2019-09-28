@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 import os
 
 host = os.environ.get('MONGOLAB_PUCE_URI', 'mongodb://localhost:27017/Playlister')
-client = MongoClient(host=f'{host}?retryWrites=false')
+client = MongoClient(host=host)
 db = client.Playlister
 playlists = db.playlists
 app = Flask(__name__)
