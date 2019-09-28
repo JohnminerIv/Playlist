@@ -7,7 +7,7 @@ import os
 # client = MongoClient(host=f'{host}?retryWrites=false')
 host = os.environ.get('MONGODB_URI', 'mongodb://<JohnMiner>:<PlayL1st3r>@ds017688.mlab.com:17688/heroku_9ktnwzhl')
 client = MongoClient(host=f'{host}?retryWrites=false')
-db = client.Playlister
+db = client.get_default_database()
 playlists = db.playlists
 app = Flask(__name__)
 """
