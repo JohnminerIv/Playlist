@@ -3,8 +3,10 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
 
-host = os.environ.get('MONGODB_URI', 'mongodb://heroku_9ktnwzhl:k1vbhi02t7im1uih473f5anppd@ds017688.mlab.com:17688/heroku_9ktnwzhl')
-client = MongoClient(host=f'{host}?retryWrites=false')
+# host = os.environ.get('MONGODB_URI', 'mongodb://heroku_9ktnwzhl:k1vbhi02t7im1uih473f5anppd@ds017688.mlab.com:17688/heroku_9ktnwzhl')
+# client = MongoClient(host=f'{host}?retryWrites=false')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
+client = MongoClient(host=host)
 db = client.Playlister
 playlists = db.playlists
 app = Flask(__name__)
@@ -80,3 +82,4 @@ def playlists_delete(playlist_id):
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
+    # app.run(debug=True)
