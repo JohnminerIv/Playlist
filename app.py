@@ -5,7 +5,7 @@ import os
 
 # host = os.environ.get('MONGODB_URI', 'mongodb://heroku_9ktnwzhl:k1vbhi02t7im1uih473f5anppd@ds017688.mlab.com:17688/heroku_9ktnwzhl')
 # client = MongoClient(host=f'{host}?retryWrites=false')
-host = os.environ.get('MONGODB_URI', 'mongodb://<dbuser>:<dbpassword>@ds017688.mlab.com:17688/heroku_9ktnwzhl')
+host = os.environ.get('MONGODB_URI', 'mongodb://JohnMiner:PlayL1st3r@ds017688.mlab.com:17688/heroku_9ktnwzhl')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.Playlister
 playlists = db.playlists
