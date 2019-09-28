@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 import os
 
 host = os.environ.get('MONGODB_URI', 'mongodb://heroku_9ktnwzhl:k1vbhi02t7im1uih473f5anppd@ds017688.mlab.com:17688/heroku_9ktnwzhl')
-client = MongoClient(host=host)
+client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.Playlister
 playlists = db.playlists
 app = Flask(__name__)
