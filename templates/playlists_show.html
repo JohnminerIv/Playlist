@@ -13,10 +13,10 @@
     <form action="{{playlist._id}}/delete" method="POST">
         <button type="submit">Delete</button>
     </form>
+    {% include 'partials/comment_form.html' %}
     {% for comment in comments %}
         {% include 'partials/comment.html' %}
     {% endfor %}
-    {% include 'partials/comment_form.html' %}
     </div>
     </div>
 {% endblock %}
