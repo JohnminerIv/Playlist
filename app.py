@@ -3,12 +3,11 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
 
-# host = os.environ.get('MONGODB_URI', 'mongodb://heroku_9ktnwzhl:k1vbhi02t7im1uih473f5anppd@ds017688.mlab.com:17688/heroku_9ktnwzhl')
-# client = MongoClient(host=f'{host}?retryWrites=false')
 host = os.environ.get('MONGODB_URI', 'mongodb://<JohnMiner>:<PlayL1st3r>@ds017688.mlab.com:17688/heroku_9ktnwzhl')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 playlists = db.playlists
+comments = db.comments
 app = Flask(__name__)
 """
 playlists = [
@@ -50,7 +49,8 @@ def playlists_submit():
 @app.route('/playlists/<playlist_id>')
 def playlists_show(playlist_id):
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
-    return render_template("playlists_show.html", playlist=playlist)
+    playlist_comments = comments.find_one({'playlist_id': ObjectId(playlist_id)})
+    return render_template("playlists_show.html", playlist=playlist, comments=playlist_comments)
 
 
 @app.route('/playlists/<playlist_id>', methods=['POST'])
@@ -78,6 +78,16 @@ def playlists_edit(playlist_id):
 def playlists_delete(playlist_id):
     playlists.delete_one({"_id": ObjectId(playlist_id)})
     return redirect(url_for('playlists_index'))
+
+@app.route('/playlists/comments', methods=['POST'])
+def comment_new():
+    comment = {
+        'title': request.form.get('title'),
+        'description': request.form.get('description'),
+        'playlist_id': ObjectId(request.form.get('playlist_id'))
+    }
+    comment_id = comments.insert_one(comment).inserted_id
+    return redirect(url_for('playlists_show', playlist_id=playlist_id))
 
 
 if __name__ == '__main__':
