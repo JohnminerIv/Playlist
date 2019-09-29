@@ -90,7 +90,8 @@ def comment_new():
     comment_id = comments.insert_one(comment).inserted_id
     return redirect(url_for('playlists_show', playlist_id=comment['playlist_id']))
 
-@app.route('playlists/comments/<comment_id>', methods=['POST'])
+
+@app.route('/playlists/comments/<comment_id>', methods=['POST'])
 def comments_delete(comment_id):
     if request.form.get('_method') == 'DELETE':
         comment = comments.find_one({'_id': ObjectId(comment_id)})
