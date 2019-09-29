@@ -88,7 +88,7 @@ def comment_new():
         'playlist_id': ObjectId(request.form.get('playlist_id'))
     }
     comments.insert_one(comment)
-    return redirect(url_for('playlists_show', playlist_id=playlist_id))
+    return redirect(url_for('playlists_show', playlist_id=comment['playlist_id']))
 
 
 if __name__ == '__main__':
